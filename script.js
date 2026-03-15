@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
 
       try {
-        // Change this URL to your hosted backend URL later
-        const response = await fetch('http://localhost:5000/send-email', {
+        // Updated to point to the live Render backend
+        const response = await fetch('https://webdeveloper-17gx.onrender.com/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
