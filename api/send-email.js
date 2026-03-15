@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
@@ -8,12 +8,18 @@ export default async function handler(req, res) {
 
   const { name, email, message } = req.body;
 
+  // Debug check for environment variables in Vercel Logs
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error('VERCEL ERROR: EMAIL_USER or EMAIL_PASS environment variables are missing!');
+    return res.status(500).json({ message: 'Server configuration error (missing variables)' });
+  }
+
   // Basic validation
   if (!name || !email || !message) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  // SMTP Configuration (Uses Vercel Environment Variables)
+  // SMTP Configuration
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -46,4 +52,4 @@ export default async function handler(req, res) {
       error: error.message 
     });
   }
-}
+};
