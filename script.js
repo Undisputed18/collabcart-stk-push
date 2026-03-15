@@ -71,11 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Message sent successfully! It is now in your Gmail inbox.');
           contactForm.reset();
         } else {
-          alert('Error sending message. Is your backend server running?');
+          const errorData = await response.json().catch(() => ({}));
+          alert(`Error: ${errorData.message || 'Something went wrong on the server.'}`);
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Could not connect to the email server.');
+        alert('Could not connect to the email server. Please try again later.');
       } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
