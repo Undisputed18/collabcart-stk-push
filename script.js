@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
 
       try {
-        // Updated to point to the live Render backend
-        const response = await fetch('https://webdeveloper-17gx.onrender.com/send-email', {
+        // Updated to use Vercel Serverless Function (relative path)
+        const response = await fetch('/api/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
