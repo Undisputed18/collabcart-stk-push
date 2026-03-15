@@ -306,6 +306,35 @@ nav {
   border-left: 4px solid var(--primary-color);
 }
 
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.project-cta {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px; /* Added spacing before the tag */
+  color: var(--primary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.project-cta::after {
+  content: ' \2192'; /* Unicode arrow */
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 5px;
+}
+
+.project-card:hover .project-cta::after {
+  transform: translateX(5px);
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
